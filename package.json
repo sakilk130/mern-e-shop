@@ -1,0 +1,22 @@
+{
+  "name": "mern-e-shop",
+  "version": "1.0.0",
+  "description": "",
+  "main": "server.js",
+  "scripts": {
+    "start": "node api/server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/sakilk130/mern-e-shop.git"
+  },
+  "author": "sakil khan",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/sakilk130/mern-e-shop/issues"
+  },
+  "homepage": "https://github.com/sakilk130/mern-e-shop#readme",
+  "dependencies": {
+    "express": "^4.17.2"
+  }
+}
