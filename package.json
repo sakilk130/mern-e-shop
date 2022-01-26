@@ -2,9 +2,13 @@
   "name": "mern-e-shop",
   "version": "1.0.0",
   "description": "",
+  "type": "module",
   "main": "server.js",
   "scripts": {
-    "start": "node api/server.js"
+    "start": "node api/server.js",
+    "server": "nodemon api/server.js",
+    "client": "npm start --prefix client",
+    "dev": "concurrently \"npm run server\" \"npm run client\""
   },
   "repository": {
     "type": "git",
@@ -17,6 +21,7 @@
   },
   "homepage": "https://github.com/sakilk130/mern-e-shop#readme",
   "dependencies": {
+    "dotenv": "^14.3.2",
     "express": "^4.17.2"
   },
   "devDependencies": {
