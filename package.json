@@ -8,7 +8,9 @@
     "start": "node api/server.js",
     "server": "nodemon api/server.js",
     "client": "npm start --prefix client",
-    "dev": "concurrently \"npm run server\" \"npm run client\""
+    "dev": "concurrently \"npm run server\" \"npm run client\"",
+    "data:import": "node api/seeder",
+    "data:destroy": "node api/seeder -d"
   },
   "repository": {
     "type": "git",
@@ -21,6 +23,7 @@
   },
   "homepage": "https://github.com/sakilk130/mern-e-shop#readme",
   "dependencies": {
+    "bcryptjs": "^2.4.3",
     "colors": "^1.4.0",
     "dotenv": "^14.3.2",
     "express": "^4.17.2",
