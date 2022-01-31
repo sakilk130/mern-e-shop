@@ -9,6 +9,7 @@ import Cart from './pages/Cart';
 
 //pages
 import Home from './pages/Home';
+import Login from './pages/Login';
 import Product from './pages/Product';
 
 const App = () => {
@@ -17,9 +18,10 @@ const App = () => {
       <Header />
       <main className="py-3">
         <Container>
-          <Route path="/" component={Home} exact />
+          <Route path="/login" component={Login} exact />
           <Route path="/product/:id" component={Product} exact />
           <Route path="/cart/:id?" component={Cart} />
+          <Route path="/" component={Home} exact />
         </Container>
       </main>
       <Footer />
