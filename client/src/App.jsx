@@ -11,6 +11,7 @@ import Cart from './pages/Cart';
 import Home from './pages/Home';
 import Login from './pages/Login';
 import Product from './pages/Product';
+import Profile from './pages/Profile';
 import Register from './pages/Register';
 
 const App = () => {
@@ -19,6 +20,7 @@ const App = () => {
       <Header />
       <main className="py-3">
         <Container>
+          <Route path="/profile" component={Profile} exact />
           <Route path="/register" component={Register} exact />
           <Route path="/login" component={Login} exact />
           <Route path="/product/:id" component={Product} exact />
