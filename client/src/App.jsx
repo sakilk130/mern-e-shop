@@ -10,6 +10,7 @@ import Cart from './pages/Cart';
 //pages
 import Home from './pages/Home';
 import Login from './pages/Login';
+import Order from './pages/Order';
 import Payment from './pages/Payment';
 import PlaceOrder from './pages/PlaceOrder';
 import Product from './pages/Product';
@@ -23,6 +24,7 @@ const App = () => {
       <Header />
       <main className="py-3">
         <Container>
+          <Route path="/order/:id" component={Order} exact />
           <Route path="/placeorder" component={PlaceOrder} exact />
           <Route path="/payment" component={Payment} exact />
           <Route path="/shipping" component={Shipping} exact />
