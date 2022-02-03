@@ -9,7 +9,7 @@ import axios from 'axios';
 import { PayPalButton } from 'react-paypal-button-v2';
 import { ORDER_PAY_RESET } from '../constants/orderConstants';
 
-const Order = ({ match }) => {
+const Order = ({ match, history }) => {
   const orderId = match.params.id;
   const [sdkReady, setSdkReady] = useState(false);
   const dispatch = useDispatch();
@@ -18,7 +18,10 @@ const Order = ({ match }) => {
   const { order, loading, error } = orderDetails;
 
   const orderPay = useSelector((state) => state.orderPay);
-  const { loading: loadingPay, success: successPay } = orderDetails;
+  const { loading: loadingPay, success: successPay } = orderPay;
+
+  const userLogin = useSelector((state) => state.userLogin);
+  const { userInfo } = userLogin;
 
   if (!loading) {
     const addDecimals = (num) => {
@@ -31,6 +34,10 @@ const Order = ({ match }) => {
   }
 
   useEffect(() => {
+    if (!userInfo) {
+      history.push('/login');
+    }
+
     const addPaypalScript = async () => {
       const { data } = await axios.get('/api/config/paypal');
       const script = document.createElement('script');
@@ -52,7 +59,7 @@ const Order = ({ match }) => {
         setSdkReady(true);
       }
     }
-  }, [dispatch, orderId, successPay, order]);
+  }, [dispatch, orderId, successPay, order, history, userInfo]);
 
   const successPaymentHandler = (paymentResult) => {
     console.log(paymentResult);

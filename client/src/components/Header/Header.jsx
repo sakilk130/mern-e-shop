@@ -31,11 +31,13 @@ const Header = () => {
               </LinkContainer>
               {userInfo ? (
                 <NavDropdown title={userInfo.name} id="username">
-                  <NavDropdown.Item href="/profile">
-                    <i className="fas fa-user"></i> Profile
-                  </NavDropdown.Item>
+                  <LinkContainer to="/profile">
+                    <NavDropdown.Item>
+                      {' '}
+                      <i className="fas fa-user"></i> Profile
+                    </NavDropdown.Item>
+                  </LinkContainer>
                   <NavDropdown.Item onClick={logoutHandler}>
-                    {' '}
                     <i className="fas fa-sign-out-alt"></i> Logout
                   </NavDropdown.Item>
                 </NavDropdown>
