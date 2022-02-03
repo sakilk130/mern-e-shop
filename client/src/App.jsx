@@ -17,6 +17,7 @@ import Product from './pages/Product';
 import Profile from './pages/Profile';
 import Register from './pages/Register';
 import Shipping from './pages/Shipping';
+import UserList from './pages/UserList';
 
 const App = () => {
   return (
@@ -24,6 +25,7 @@ const App = () => {
       <Header />
       <main className="py-3">
         <Container>
+          <Route path="/admin/userlist" component={UserList} exact />
           <Route path="/order/:id" component={Order} exact />
           <Route path="/placeorder" component={PlaceOrder} exact />
           <Route path="/payment" component={Payment} exact />
