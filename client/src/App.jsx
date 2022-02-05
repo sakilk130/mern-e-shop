@@ -17,6 +17,7 @@ import Product from './pages/Product';
 import Profile from './pages/Profile';
 import Register from './pages/Register';
 import Shipping from './pages/Shipping';
+import UserEdit from './pages/UserEdit';
 import UserList from './pages/UserList';
 
 const App = () => {
@@ -25,6 +26,7 @@ const App = () => {
       <Header />
       <main className="py-3">
         <Container>
+          <Route path="/admin/user/:id/edit" component={UserEdit} exact />
           <Route path="/admin/userlist" component={UserList} exact />
           <Route path="/order/:id" component={Order} exact />
           <Route path="/placeorder" component={PlaceOrder} exact />
