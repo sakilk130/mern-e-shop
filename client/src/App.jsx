@@ -11,6 +11,7 @@ import Cart from './pages/Cart';
 import Home from './pages/Home';
 import Login from './pages/Login';
 import Order from './pages/Order';
+import OrderList from './pages/OrderList';
 import Payment from './pages/Payment';
 import PlaceOrder from './pages/PlaceOrder';
 import Product from './pages/Product';
@@ -28,6 +29,7 @@ const App = () => {
       <Header />
       <main className="py-3">
         <Container>
+          <Route path="/admin/orderlist" component={OrderList} exact />
           <Route path="/admin/product/:id/edit" component={ProductEdit} exact />
           <Route path="/admin/productlist" component={ProductList} exact />
           <Route path="/admin/user/:id/edit" component={UserEdit} exact />
