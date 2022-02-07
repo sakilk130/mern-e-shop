@@ -20,6 +20,7 @@ import { PRODUCT_CREATE_REVIEW_RESET } from '../constants/productConstants';
 import Rating from '../components/Rating/Rating';
 import Loader from '../components/Loader/Loader';
 import Message from '../components/Message/Message';
+import Meta from '../components/Meta/Meta';
 
 const Product = ({ history, match }) => {
   const [qty, setQty] = useState(1);
@@ -73,6 +74,7 @@ const Product = ({ history, match }) => {
         <Message variant="danger">{error}</Message>
       ) : (
         <>
+          <Meta title={product.name} />
           <Row>
             <Col md={6}>
               <Image src={product.image} alt={product.name} fluid />
