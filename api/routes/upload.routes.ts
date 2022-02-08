@@ -5,10 +5,10 @@ import path from 'path';
 const router = express.Router();
 
 const storage = multer.diskStorage({
-  destination(req, file, cb) {
+  destination({}, {}, cb) {
     cb(null, 'uploads/');
   },
-  filename(req, file, cb) {
+  filename({}, file, cb) {
     cb(
       null,
       `${file.fieldname}-${Date.now()}${path.extname(file.originalname)}`
@@ -28,7 +28,7 @@ const checkFileType = (file: any, cb: any) => {
 };
 const upload = multer({
   storage,
-  fileFilter: function (req, file, cb) {
+  fileFilter: function ({}, file, cb) {
     checkFileType(file, cb);
   },
 });

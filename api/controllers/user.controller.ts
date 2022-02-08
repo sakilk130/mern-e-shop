@@ -126,14 +126,12 @@ const updateUserProfile = asyncHandler(
 // @desc Get all users
 // @desc route GET /api/users
 // @access Private/Admin
-const getUsers = asyncHandler(
-  async (req: Request, res: Response): Promise<void> => {
-    const users: (IUser & {
-      _id: ObjectId;
-    })[] = await User.find().select('-password');
-    res.json(users);
-  }
-);
+const getUsers = asyncHandler(async ({}, res: Response): Promise<void> => {
+  const users: (IUser & {
+    _id: ObjectId;
+  })[] = await User.find().select('-password');
+  res.json(users);
+});
 
 // @desc Delete user
 // @desc route DELETE /api/users/:id

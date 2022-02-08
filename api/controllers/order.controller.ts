@@ -110,12 +110,10 @@ const getMyOrders = asyncHandler(
 // @desc Get all orders
 // @desc route GET /api/orders
 // @access Private/Admin
-const getOrders = asyncHandler(
-  async (req: Request, res: Response): Promise<void> => {
-    const orders: any[] = await Order.find().populate('user', 'id name');
-    res.json(orders);
-  }
-);
+const getOrders = asyncHandler(async ({}, res: Response): Promise<void> => {
+  const orders: any[] = await Order.find().populate('user', 'id name');
+  res.json(orders);
+});
 
 // @desc Update order to delivered
 // @desc route GET /api/orders/:id/deliver

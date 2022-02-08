@@ -1,13 +1,12 @@
-import mongoose from 'mongoose';
 import dotenv from 'dotenv';
-import colors from 'colors';
+import clc from 'cli-color';
 
-import users from './data/users.js';
-import products from './data/products.js';
-import User from './models/User.js';
-import Product from './models/Product.js';
-import Order from './models/Order.js';
-import connectDB from './config/db.js';
+import users from './data/users';
+import products from './data/products';
+import User from './models/User';
+import Product from './models/Product';
+import Order from './models/Order';
+import connectDB from './config/db';
 
 dotenv.config();
 connectDB();
@@ -27,9 +26,9 @@ const importData = async () => {
       };
     });
     await Product.insertMany(sampleProducts);
-    console.log('Data Imported!'.green.inverse);
+    console.log(clc.bgBlue.bold('Data Imported!'));
   } catch (error) {
-    console.log(`${error}`.red.inverse);
+    console.log(clc.red.bold(`${error}`));
     process.exit(1);
   }
 };
@@ -40,9 +39,9 @@ const destroyData = async () => {
     await Product.deleteMany();
     await User.deleteMany();
 
-    console.log('Data Destroyed!'.red.inverse);
+    console.log(clc.red.bold.bgWhite('Data Destroyed!'));
   } catch (error) {
-    console.log(`${error}`.red.inverse);
+    console.log(clc.red.bold(`${error}`));
     process.exit(1);
   }
 };

@@ -1,8 +1,8 @@
-import express, { Application, Request, Response } from 'express';
+import express, { Application, Response } from 'express';
 import dotenv from 'dotenv';
-import colors from 'colors';
 import path from 'path';
 import morgan from 'morgan';
+import clc from 'cli-color';
 
 import connectDB from './config/db';
 import { errorHandler, notFound } from './middleware/error.middleware';
@@ -27,18 +27,18 @@ app.use('/api/users', userRoutes);
 app.use('/api/orders', orderRoutes);
 app.use('/api/uploads', uploadRoutes);
 
-app.get('/api/config/paypal', (req: Request, res: Response) => {
+app.get('/api/config/paypal', ({}, res: Response) => {
   res.send(process.env.PAYPAL_CLIENT_ID);
 });
 
 app.use('/uploads', express.static(path.join(dirname, '/uploads')));
 if (process.env.NODE_ENV === 'production') {
   app.use(express.static(path.join(dirname, '/client/build')));
-  app.get('*', (req: Request, res: Response) =>
+  app.get('*', ({}, res: Response) =>
     res.sendFile(path.resolve(dirname, 'client', 'build', 'index.html'))
   );
 } else {
-  app.get('/', (req: Request, res: Response) => {
+  app.get('/', ({}, res: Response) => {
     res.send('API is running...');
   });
 }
@@ -47,6 +47,8 @@ app.use(errorHandler);
 
 app.listen(PORT, () => {
   console.log(
-    `server is running in ${process.env.NODE_ENV} mode on port ${PORT}`
+    clc.yellow.bold(
+      `server is running in ${process.env.NODE_ENV} mode on port ${PORT}`
+    )
   );
 });
