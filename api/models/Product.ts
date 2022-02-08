@@ -1,6 +1,7 @@
-import mongoose from 'mongoose';
+import mongoose, { model, Schema } from 'mongoose';
+import { IProduct } from '../types/Product';
 
-const reviewSchema = mongoose.Schema(
+const reviewSchema: Schema = new Schema(
   {
     name: {
       type: String,
@@ -25,7 +26,7 @@ const reviewSchema = mongoose.Schema(
   }
 );
 
-const productSchema = mongoose.Schema(
+const productSchema: Schema = new Schema(
   {
     user: {
       type: mongoose.Schema.Types.ObjectId,
@@ -79,5 +80,5 @@ const productSchema = mongoose.Schema(
   }
 );
 
-const Product = mongoose.model('Product', productSchema);
+const Product = model<IProduct>('Product', productSchema);
 export default Product;

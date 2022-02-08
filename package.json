@@ -2,15 +2,17 @@
   "name": "mern-e-shop",
   "version": "1.0.0",
   "description": "",
-  "type": "module",
   "main": "server.js",
   "scripts": {
-    "start": "node api/server.js",
-    "server": "nodemon api/server.js",
+    "start": "tsc && node api/dist/server.js",
+    "watch": "tsc -w",
+    "api:dev": "nodemon api/dist/server.js",
+    "api:prod": "node api/dist/server.js",
     "client": "npm start --prefix client",
-    "dev": "concurrently \"npm run server\" \"npm run client\"",
-    "data:import": "node api/seeder",
-    "data:destroy": "node api/seeder -d"
+    "dev": "concurrently \"npm run api:dev\" \"npm run client\"",
+    "prod": "concurrently \"npm run api:prod\" \"npm run client\"",
+    "data:import": "node api/dist/seeder",
+    "data:destroy": "node api/dist/seeder -d"
   },
   "repository": {
     "type": "git",
@@ -24,7 +26,7 @@
   "homepage": "https://github.com/sakilk130/mern-e-shop#readme",
   "dependencies": {
     "bcryptjs": "^2.4.3",
-    "colors": "^1.4.0",
+    "cli-color": "^2.0.1",
     "dotenv": "^14.3.2",
     "express": "^4.17.2",
     "express-async-handler": "^1.1.4",
@@ -34,7 +36,18 @@
     "multer": "^1.4.4"
   },
   "devDependencies": {
+    "@types/bcryptjs": "^2.4.2",
+    "@types/cli-color": "^2.0.2",
+    "@types/colors": "^1.2.1",
+    "@types/express": "^4.17.13",
+    "@types/jsonwebtoken": "^8.5.8",
+    "@types/mongoose": "^5.11.97",
+    "@types/morgan": "^1.9.3",
+    "@types/multer": "^1.4.7",
     "concurrently": "^7.0.0",
-    "nodemon": "^2.0.15"
+    "nodemon": "^2.0.15",
+    "ts-node": "^10.4.0",
+    "ts-node-dev": "^1.1.8",
+    "typescript": "^4.5.5"
   }
 }
