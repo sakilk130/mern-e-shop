@@ -6,28 +6,42 @@ import {
   CART_SAVE_PAYMENT_METHOD,
 } from '../constants/cartConstants';
 
-interface IActions {
+export interface IActions {
   CART_ADD_ITEM: string;
   CART_REMOVE_ITEM: string;
   CART_SAVE_SHIPPING_ADDRESS: string;
   CART_SAVE_PAYMENT_METHOD: string;
 }
 
-interface ICart {
+export interface IPaymentMethod {
+  id: string;
+  status: string;
+  update_time: string;
+  email_address: string;
+}
+export interface ICart {
   _id?: string;
-  product?: string;
+  product?: string | undefined;
   name: string;
   image: string;
   price: number;
   countInStock: number;
   qty: number;
 }
-interface IAddToCart {
+
+export interface IShippingAddress {
+  address: string;
+  city: string;
+  postalCode: string;
+  country: string;
+}
+
+export interface IAddToCart {
   type: IActions['CART_ADD_ITEM'];
   payload: ICart;
 }
 
-interface IRemoveFromCart {
+export interface IRemoveFromCart {
   type: IActions['CART_REMOVE_ITEM'];
   payload: string;
 }
@@ -69,15 +83,16 @@ export const removeFromCart =
     );
   };
 
-export const saveShippingAddress = (data: any) => (dispatch: any) => {
-  dispatch({
-    type: CART_SAVE_SHIPPING_ADDRESS,
-    payload: data,
-  });
-  localStorage.setItem('shippingAddress', JSON.stringify(data));
-};
+export const saveShippingAddress =
+  (data: IShippingAddress) => (dispatch: any) => {
+    dispatch({
+      type: CART_SAVE_SHIPPING_ADDRESS,
+      payload: data,
+    });
+    localStorage.setItem('shippingAddress', JSON.stringify(data));
+  };
 
-export const savePaymentMethod = (data: any) => (dispatch: any) => {
+export const savePaymentMethod = (data: IPaymentMethod) => (dispatch: any) => {
   dispatch({
     type: CART_SAVE_PAYMENT_METHOD,
     payload: data,
