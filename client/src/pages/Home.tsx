@@ -1,14 +1,17 @@
-import React, { useEffect } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
-import { Col, Row } from 'react-bootstrap';
-import { Link } from 'react-router-dom';
-import { listProducts } from '../actions/productActions';
-import Product from '../components/Product/Product';
-import Loader from '../components/Loader/Loader';
-import Message from '../components/Message/Message';
-import Paginate from '../components/Paginate/Paginate';
-import ProductCarousel from '../components/ProductCarousel/ProductCarousel';
-import Meta from '../components/Meta/Meta';
+import React, { FC, useEffect } from "react";
+import { Col, Row } from "react-bootstrap";
+import { useDispatch, useSelector } from "react-redux";
+import { Link } from "react-router-dom";
+import { Dispatch } from "redux";
+import { listProducts } from "../actions/productActions";
+import Loader from "../components/Loader/Loader";
+import Message from "../components/Message/Message";
+import Meta from "../components/Meta/Meta";
+import Paginate from "../components/Paginate/Paginate";
+import Product from "../components/Product/Product";
+import ProductCarousel from "../components/ProductCarousel/ProductCarousel";
+import { AppState } from "../store";
+import { IProduct } from "../types";
 
 interface IProps {
   match: {
@@ -19,14 +22,26 @@ interface IProps {
   };
 }
 
-const Home: React.FC<IProps> = ({ match }) => {
+const Home: FC<IProps> = ({ match }) => {
   const keyword = match.params.keyword;
-  const pageNumber = match.params.pageNumber || 1;
+  const pageNumber: any = match.params.pageNumber || 1;
 
-  const dispatch = useDispatch();
+  const dispatch: Dispatch<any> = useDispatch();
 
-  const productList = useSelector((state: any) => state.productList);
-  const { loading, error, products, page, pages } = productList;
+  const productList = useSelector((state: AppState) => state.productList);
+  const {
+    loading,
+    error,
+    products,
+    page,
+    pages,
+  }: {
+    loading: boolean;
+    error: string | null;
+    products: IProduct[];
+    page: number;
+    pages: number;
+  } = productList;
 
   useEffect(() => {
     dispatch(listProducts(keyword, pageNumber));
@@ -46,11 +61,11 @@ const Home: React.FC<IProps> = ({ match }) => {
       {loading ? (
         <Loader />
       ) : error ? (
-        <Message variant={'danger'}>{error}</Message>
+        <Message variant={"danger"}>{error}</Message>
       ) : (
         <>
           <Row>
-            {products.map((product: any) => (
+            {products.map((product: IProduct) => (
               <Col sm={12} md={6} lg={4} xl={3} key={product._id}>
                 <Product product={product} />
               </Col>
@@ -59,7 +74,7 @@ const Home: React.FC<IProps> = ({ match }) => {
           <Paginate
             pages={pages}
             page={page}
-            keyword={keyword ? keyword : ''}
+            keyword={keyword ? keyword : ""}
           />
         </>
       )}

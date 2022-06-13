@@ -23,9 +23,14 @@ import {
   PRODUCT_UPDATE_REQUEST,
   PRODUCT_UPDATE_RESET,
   PRODUCT_UPDATE_SUCCESS,
-} from '../constants/productConstants';
+} from "../constants/productConstants";
+import { IProduct } from "../types";
 
-export const productListReducer = (state = { products: [] }, action: any) => {
+const initialState = {
+  products: [] as IProduct[],
+};
+
+export const productListReducer = (state = initialState, action: any) => {
   switch (action.type) {
     case PRODUCT_LIST_REQUEST:
       return { loading: true, products: [] };

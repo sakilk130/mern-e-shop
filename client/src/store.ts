@@ -80,4 +80,5 @@ const store = createStore(
   composeWithDevTools(applyMiddleware(...middleware))
 );
 
+export type AppState = ReturnType<typeof reducer>;
 export default store;
