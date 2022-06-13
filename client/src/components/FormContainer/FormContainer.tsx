@@ -1,9 +1,9 @@
-import React from 'react';
-import { Container, Row, Col } from 'react-bootstrap';
+import React from "react";
+import { Container, Row, Col } from "react-bootstrap";
 interface IProps {
   children: React.ReactNode;
 }
-const FormContainer: React.FC<IProps> = ({ children }) => {
+const FormContainer: React.FC<IProps> = ({ children }: any) => {
   return (
     <Container>
       <Row className="justify-content-md-center">

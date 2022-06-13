@@ -1,9 +1,9 @@
-import React, { useState } from 'react';
-import { Form, Button, Col } from 'react-bootstrap';
-import { useDispatch, useSelector } from 'react-redux';
-import FormContainer from '../components/FormContainer/FormContainer';
-import { savePaymentMethod } from '../actions/cartActions';
-import CheckoutSteps from '../components/CheckoutSteps/CheckoutSteps';
+import React, { useState } from "react";
+import { Form, Button, Col } from "react-bootstrap";
+import { useDispatch, useSelector } from "react-redux";
+import FormContainer from "../components/FormContainer/FormContainer";
+import { savePaymentMethod } from "../actions/cartActions";
+import CheckoutSteps from "../components/CheckoutSteps/CheckoutSteps";
 interface IProps {
   history: {
     push(url: string): void;
@@ -13,16 +13,16 @@ const Payment: React.FC<IProps> = ({ history }) => {
   const cart = useSelector((state: any) => state.cart);
   const { shippingAddress } = cart;
   if (!shippingAddress) {
-    history.push('/shipping');
+    history.push("/shipping");
   }
 
-  const [paymentMethod, setPaymentMethod] = useState<string>('PayPal');
+  const [paymentMethod, setPaymentMethod]: any = useState<string>("PayPal");
 
   const dispatch = useDispatch();
   const submitHandler = (e: React.FormEvent<Element>) => {
     e.preventDefault();
     dispatch(savePaymentMethod(paymentMethod));
-    history.push('/placeorder');
+    history.push("/placeorder");
   };
 
   return (

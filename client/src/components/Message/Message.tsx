@@ -1,15 +1,15 @@
-import React from 'react';
-import { Alert } from 'react-bootstrap';
+import React from "react";
+import { Alert } from "react-bootstrap";
 interface IProps {
   variant?: string;
   children: React.ReactNode;
 }
-const Message: React.FC<IProps> = ({ variant, children }) => {
+const Message: React.FC<IProps> = ({ variant, children }: any) => {
   return <Alert variant={variant}>{children}</Alert>;
 };
 
 Message.defaultProps = {
-  variant: 'info',
+  variant: "info",
 };
 
 export default Message;
