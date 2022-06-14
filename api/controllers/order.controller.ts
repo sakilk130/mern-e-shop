@@ -1,8 +1,8 @@
-import Order from '../models/Order.js';
-import asyncHandler from 'express-async-handler';
-import { Request, Response } from 'express';
-import { IOrder, IOrderItems, IShippingAddress } from '../types/Order';
-import { ObjectId } from 'mongoose';
+import Order from "../models/Order.js";
+import asyncHandler from "express-async-handler";
+import { Request, Response } from "express";
+import { IOrder, IOrderItems, IShippingAddress } from "../types/Order";
+import { ObjectId } from "mongoose";
 
 // @desc Create new order
 // @desc route POST /api/orders
@@ -29,7 +29,7 @@ const addOrderItems = asyncHandler(
 
     if (orderItems && orderItems.length === 0) {
       res.status(400);
-      throw new Error('No order items');
+      throw new Error("No order items");
     } else {
       const order = new Order({
         orderItems,
@@ -53,12 +53,12 @@ const addOrderItems = asyncHandler(
 const getOrderById = asyncHandler(
   async (req: Request, res: Response): Promise<void> => {
     const order: any = await Order.findById(req.params.id).populate(
-      'user',
-      'name email'
+      "user",
+      "name email"
     );
     if (!order) {
       res.status(404);
-      throw new Error('Order not found');
+      throw new Error("Order not found");
     }
     res.status(200).json(order);
   }
@@ -90,7 +90,7 @@ const updateOrderToPaid = asyncHandler(
       res.json(updatedOrder);
     } else {
       res.status(404);
-      throw new Error('Order not found');
+      throw new Error("Order not found");
     }
   }
 );
@@ -111,7 +111,7 @@ const getMyOrders = asyncHandler(
 // @desc route GET /api/orders
 // @access Private/Admin
 const getOrders = asyncHandler(async ({}, res: Response): Promise<void> => {
-  const orders: any[] = await Order.find().populate('user', 'id name');
+  const orders: any[] = await Order.find().populate("user", "id name");
   res.json(orders);
 });
 
@@ -120,9 +120,7 @@ const getOrders = asyncHandler(async ({}, res: Response): Promise<void> => {
 // @access Private/Admin
 const updateOrderToDelivered = asyncHandler(
   async (req: Request, res: Response): Promise<void> => {
-    const order: IOrder & {
-      _id: ObjectId;
-    } = await Order.findById(req.params.id);
+    const order: any = await Order.findById(req.params.id);
 
     if (order) {
       order.isDelivered = true;
@@ -131,7 +129,7 @@ const updateOrderToDelivered = asyncHandler(
       res.json(updatedOrder);
     } else {
       res.status(404);
-      throw new Error('Order not found');
+      throw new Error("Order not found");
     }
   }
 );

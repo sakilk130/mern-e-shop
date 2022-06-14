@@ -1,0 +1,26 @@
+export const ORDER_CREATE_REQUEST: string = 'ORDER_CREATE_REQUEST';
+export const ORDER_CREATE_SUCCESS: string = 'ORDER_CREATE_SUCCESS';
+export const ORDER_CREATE_FAIL: string = 'ORDER_CREATE_FAIL';
+
+export const ORDER_DETAILS_REQUEST: string = 'ORDER_DETAILS_REQUEST';
+export const ORDER_DETAILS_SUCCESS: string = 'ORDER_DETAILS_SUCCESS';
+export const ORDER_DETAILS_FAIL: string = 'ORDER_DETAILS_FAIL';
+
+export const ORDER_PAY_REQUEST: string = 'ORDER_PAY_REQUEST';
+export const ORDER_PAY_SUCCESS: string = 'ORDER_PAY_SUCCESS';
+export const ORDER_PAY_FAIL: string = 'ORDER_PAY_FAIL';
+export const ORDER_PAY_RESET: string = 'ORDER_PAY_RESET';
+
+export const ORDER_LIST_MY_REQUEST: string = 'ORDER_LIST_MY_REQUEST';
+export const ORDER_LIST_MY_SUCCESS: string = 'ORDER_LIST_MY_SUCCESS';
+export const ORDER_LIST_MY_FAIL: string = 'ORDER_LIST_MY_FAIL';
+export const ORDER_LIST_MY_RESET: string = 'ORDER_LIST_MY_RESET';
+
+export const ORDER_LIST_REQUEST: string = 'ORDER_LIST_REQUEST';
+export const ORDER_LIST_SUCCESS: string = 'ORDER_LIST_SUCCESS';
+export const ORDER_LIST_FAIL: string = 'ORDER_LIST_FAIL';
+
+export const ORDER_DELIVER_REQUEST: string = 'ORDER_DELIVER_REQUEST';
+export const ORDER_DELIVER_SUCCESS: string = 'ORDER_DELIVER_SUCCESS';
+export const ORDER_DELIVER_FAIL: string = 'ORDER_DELIVER_FAIL';
+export const ORDER_DELIVER_RESET: string = 'ORDER_DELIVER_RESET';
