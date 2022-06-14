@@ -1,11 +1,13 @@
-import React, { useState, useEffect } from 'react';
-import { Link } from 'react-router-dom';
-import { Form, Button, Row, Col } from 'react-bootstrap';
-import { useDispatch, useSelector } from 'react-redux';
-import Message from '../components/Message/Message';
-import Loader from '../components/Loader/Loader';
-import { login } from '../actions/userActions';
-import FormContainer from '../components/FormContainer/FormContainer';
+import React, { useState, useEffect } from "react";
+import { Link } from "react-router-dom";
+import { Form, Button, Row, Col } from "react-bootstrap";
+import { useDispatch, useSelector } from "react-redux";
+import Message from "../components/Message/Message";
+import Loader from "../components/Loader/Loader";
+import { login } from "../actions/userActions";
+import FormContainer from "../components/FormContainer/FormContainer";
+import { AppState } from "../store";
+import { IUserInfo } from "../types";
 
 interface IProps {
   history: {
@@ -16,14 +18,24 @@ interface IProps {
   };
 }
 
+interface IUserLogin {
+  loading?: boolean;
+  error?: string | null;
+  userInfo?: IUserInfo;
+}
+
 const Login: React.FC<IProps> = ({ location, history }) => {
-  const [email, setEmail] = useState<string>('');
-  const [password, setPassword] = useState<string>('');
+  const [email, setEmail] = useState<string>("");
+  const [password, setPassword] = useState<string>("");
   const dispatch = useDispatch();
-  const userLogin = useSelector((state: any) => state.userLogin);
+  const userLogin: IUserLogin = useSelector(
+    (state: AppState) => state.userLogin
+  );
   const { loading, error, userInfo } = userLogin;
 
-  const redirect = location.search ? location.search.split('=')[1] : '/';
+  console.log(userInfo);
+
+  const redirect = location.search ? location.search.split("=")[1] : "/";
 
   useEffect(() => {
     if (userInfo) {
@@ -66,8 +78,8 @@ const Login: React.FC<IProps> = ({ location, history }) => {
       </Form>
       <Row className="py-3">
         <Col>
-          New Customer?{' '}
-          <Link to={redirect ? `/register?redirect=${redirect}` : '/register'}>
+          New Customer?{" "}
+          <Link to={redirect ? `/register?redirect=${redirect}` : "/register"}>
             Register
           </Link>
         </Col>

@@ -21,6 +21,13 @@ interface IProps {
     };
   };
 }
+interface IProductList {
+  loading?: boolean;
+  error?: string | null;
+  products: IProduct[];
+  page: number;
+  pages: number;
+}
 
 const Home: FC<IProps> = ({ match }) => {
   const keyword = match.params.keyword;
@@ -28,20 +35,10 @@ const Home: FC<IProps> = ({ match }) => {
 
   const dispatch: Dispatch<any> = useDispatch();
 
-  const productList = useSelector((state: AppState) => state.productList);
-  const {
-    loading,
-    error,
-    products,
-    page,
-    pages,
-  }: {
-    loading: boolean;
-    error: string | null;
-    products: IProduct[];
-    page: number;
-    pages: number;
-  } = productList;
+  const productList: IProductList = useSelector(
+    (state: AppState) => state.productList
+  );
+  const { loading, error, products, page, pages } = productList;
 
   useEffect(() => {
     dispatch(listProducts(keyword, pageNumber));

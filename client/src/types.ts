@@ -14,3 +14,20 @@ export interface IProduct {
   updatedAt: string;
   user: string;
 }
+
+export interface IUserInfo {
+  _id: string;
+  email: string;
+  isAdmin: boolean;
+  name: string;
+  token: string;
+}
+
+export interface ICart {
+  countInStock: number;
+  image: string;
+  name: string;
+  price: number;
+  product: string;
+  qty: number;
+}

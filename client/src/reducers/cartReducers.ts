@@ -1,16 +1,12 @@
-import {
-  ICart,
-  IPaymentMethod,
-  IShippingAddress,
-} from '../actions/cartActions';
+import { ICart, IShippingAddress } from "../actions/cartActions";
 import {
   CART_ADD_ITEM,
   CART_REMOVE_ITEM,
-  CART_SAVE_SHIPPING_ADDRESS,
   CART_SAVE_PAYMENT_METHOD,
-} from '../constants/cartConstants';
+  CART_SAVE_SHIPPING_ADDRESS,
+} from "../constants/cartConstants";
 
-type Action = { type: 'CART_ADD_ITEM'; payload: ICart };
+type Action = { type: "CART_ADD_ITEM"; payload: ICart };
 
 export const cartReducer = (
   state: { cartItems: ICart[]; shippingAddress: IShippingAddress | any } = {

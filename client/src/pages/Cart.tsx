@@ -1,17 +1,19 @@
-import React, { useEffect } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
-import { Link } from 'react-router-dom';
+import React, { useEffect } from "react";
 import {
-  Row,
-  Col,
-  ListGroup,
-  Image,
-  Form,
   Button,
   Card,
-} from 'react-bootstrap';
-import Message from '../components/Message/Message';
-import { addToCart, removeFromCart } from '../actions/cartActions';
+  Col,
+  Form,
+  Image,
+  ListGroup,
+  Row,
+} from "react-bootstrap";
+import { useDispatch, useSelector } from "react-redux";
+import { Link } from "react-router-dom";
+import { addToCart, removeFromCart } from "../actions/cartActions";
+import Message from "../components/Message/Message";
+import { AppState } from "../store";
+import { ICart } from "../types";
 
 interface IProps {
   history: {
@@ -29,9 +31,9 @@ interface IProps {
 
 const Cart: React.FC<IProps> = ({ match, location, history }) => {
   const productId = match.params.id;
-  const qty = location.search ? Number(location.search.split('=')[1]) : 1;
+  const qty = location.search ? Number(location.search.split("=")[1]) : 1;
   const dispatch = useDispatch();
-  const cart = useSelector((state: any) => state.cart);
+  const cart = useSelector((state: AppState) => state.cart);
   const { cartItems } = cart;
 
   useEffect(() => {
@@ -45,7 +47,7 @@ const Cart: React.FC<IProps> = ({ match, location, history }) => {
     dispatch(removeFromCart(id));
   };
   const checkoutHandler = () => {
-    history.push('/login?redirect=shipping');
+    history.push("/login?redirect=shipping");
   };
 
   return (
@@ -54,7 +56,7 @@ const Cart: React.FC<IProps> = ({ match, location, history }) => {
         <h1>Shopping Cart</h1>
         {cartItems.length === 0 ? (
           <Message>
-            Cart is empty <Link to="/">Go Back</Link>{' '}
+            Cart is empty <Link to="/">Go Back</Link>{" "}
           </Message>
         ) : (
           <ListGroup variant="flush">

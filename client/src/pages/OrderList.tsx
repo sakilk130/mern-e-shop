@@ -1,10 +1,10 @@
-import React, { useEffect } from 'react';
-import { Button, Table } from 'react-bootstrap';
-import { useDispatch, useSelector } from 'react-redux';
-import { LinkContainer } from 'react-router-bootstrap';
-import { listOrders } from '../actions/orderActions';
-import Loader from '../components/Loader/Loader';
-import Message from '../components/Message/Message';
+import React, { useEffect } from "react";
+import { Button, Table } from "react-bootstrap";
+import { useDispatch, useSelector } from "react-redux";
+import { LinkContainer } from "react-router-bootstrap";
+import { listOrders } from "../actions/orderActions";
+import Loader from "../components/Loader/Loader";
+import Message from "../components/Message/Message";
 interface IProps {
   history: {
     push(url: string): void;
@@ -22,7 +22,7 @@ const OrderList: React.FC<IProps> = ({ history }) => {
     if (userInfo && userInfo.isAdmin) {
       dispatch(listOrders());
     } else {
-      history.push('/login');
+      history.push("/login");
     }
   }, [dispatch, history, userInfo]);
 
@@ -57,14 +57,14 @@ const OrderList: React.FC<IProps> = ({ history }) => {
                   {order.isPaid ? (
                     order.paidAt.substring(0, 10)
                   ) : (
-                    <i className="fas fa-times" style={{ color: 'red' }}></i>
+                    <i className="fas fa-times" style={{ color: "red" }}></i>
                   )}
                 </td>
                 <td>
                   {order.isDelivered ? (
                     order.deliveredAt.substring(1, 10)
                   ) : (
-                    <i className="fas fa-times" style={{ color: 'red' }}></i>
+                    <i className="fas fa-times" style={{ color: "red" }}></i>
                   )}
                 </td>
                 <td>
